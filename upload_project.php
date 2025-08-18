@@ -1,46 +1,46 @@
 <?php
 session_start();
-include("db_config.php");
+include("conn.php");
 
 $loggedIn = false;
 
-// ฟังก์ชันดึง student_id จากฐานข้อมูล
-function getStudentId($conn, $studentCode) {
-    $stmt = $conn->prepare("SELECT student_id FROM students WHERE student_id = ?");
+// ✅ ฟังก์ชันตรวจสอบ student_id และ password
+function getStudent($conn, $studentCode, $password) {
+    $stmt = $conn->prepare("SELECT student_id, password FROM students WHERE student_id = ?");
     $stmt->bind_param("i", $studentCode);
     $stmt->execute();
-    $stmt->bind_result($id);
+    $stmt->bind_result($id, $hashedPassword);
+
     if ($stmt->fetch()) {
-        return $id;
+        // ตรวจสอบรหัสผ่าน
+        if (password_verify($password, $hashedPassword)) {
+            return $id;
+        }
     }
     return false;
 }
 
-// Login
+// ✅ Login
 if (isset($_POST['login'])) {
     $studentCode = $_POST['student_id'];
-    $password = $_POST['password']; // ยังไม่ใช้จริง (mock)
+    $password = $_POST['password'];
 
-    // สมมุติว่าใช้ student_id เป็นรหัสผ่านแบบง่าย
-    if ($studentCode === $password) {
-        $student_id = getStudentId($conn, $studentCode);
-        if ($student_id) {
-            $_SESSION['student_id'] = $student_id;
-            $loggedIn = true;
-        } else {
-            $error = "ไม่พบรหัสนักศึกษาในระบบ";
-        }
+    $student_id = getStudent($conn, $studentCode, $password);
+    if ($student_id) {
+        $_SESSION['student_id'] = $student_id;
+        $loggedIn = true;
     } else {
-        $error = "รหัสผ่านไม่ถูกต้อง";
+        $error = "รหัสนักศึกษาหรือรหัสผ่านไม่ถูกต้อง";
     }
 }
 
+// ✅ ถ้ามี session อยู่แล้ว
 if (isset($_SESSION['student_id'])) {
     $loggedIn = true;
     $student_id = $_SESSION['student_id'];
 }
 
-// Upload Project
+// ✅ Upload Project
 if (isset($_POST['upload'])) {
     $title = $_POST['title'];
     $abstract = $_POST['description'];
@@ -80,6 +80,7 @@ if (isset($_POST['upload'])) {
     }
 }
 
+// ✅ Logout
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: upload_project.php");
