@@ -12,107 +12,109 @@
     }
 
     body {
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #74ebd5, #9face6);
-      height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    .card {
-      background: white;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    .form-container {
+      background-color: #ffffffdd;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      max-width: 400px;
       width: 100%;
-      max-width: 420px;
     }
 
-    .card h2 {
-      margin-bottom: 25px;
+    .form-container h2 {
       text-align: center;
       color: #333;
+      margin-bottom: 25px;
     }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
+    label {
       display: block;
-      margin-bottom: 5px;
-      color: #555;
+      margin-bottom: 6px;
+      color: #444;
+      font-weight: bold;
     }
 
-    .form-group input {
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
       width: 100%;
-      padding: 12px;
+      padding: 10px 12px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      font-size: 14px;
       transition: border-color 0.3s;
     }
 
-    .form-group input:focus {
-      border-color: #6c63ff;
+    input:focus {
+      border-color: #3498db;
       outline: none;
     }
 
-    .register-btn {
+    button {
       width: 100%;
-      background: #6c63ff;
+      background-color: #3498db;
       color: white;
       padding: 12px;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 10px;
+      font-size: 16px;
+      transition: background-color 0.3s;
     }
 
-    .register-btn:hover {
-      background: #5848c2;
+    button:hover {
+      background-color: #2980b9;
     }
 
     .footer-text {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 15px;
       font-size: 14px;
-      color: #444;
     }
 
-    a {
-      color: #6c63ff;
+    .footer-text a {
+      color: #3498db;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 25px 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
+  <div class="form-container">
     <h2>สมัครสมาชิก</h2>
-    <form onsubmit="handleRegister(event)">
-      <div class="form-group">
-        <label for="fullname">ชื่อผู้ใช้</label>
-        <input type="text" id="fullname" placeholder="กรอกชื่อจริง" required>
-      </div>
-      <div class="form-group">
-        <label for="email">อีเมล</label>
-        <input type="email" id="email" placeholder="example@email.com" required>
-      </div>
-      <div class="form-group">
-        <label for="password">รหัสผ่าน</label>
-        <input type="password" id="password" placeholder="********" required>
-      </div>
-      <button type="submit" class="register-btn">สมัครสมาชิก</button>
-    </form>
+    <form action="register.php" method="POST">
+  <label for="name">ชื่อ-นามสกุล:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">อีเมล:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="class_year">ปีการศึกษา:</label>
+  <input type="number" id="class_year" name="class_year" required>
+
+  <label for="password">รหัสผ่าน:</label>
+  <input type="password" id="password" name="password" required>
+
+  <button type="submit">ลงทะเบียน</button>
+</form>
+
+
     <div class="footer-text">
       มีบัญชีอยู่แล้ว? <a href="#">เข้าสู่ระบบ</a>
     </div>
@@ -121,14 +123,15 @@
   <script>
     function handleRegister(event) {
       event.preventDefault();
-      const fullname = document.getElementById('fullname').value;
+      const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
+      const classYear = document.getElementById('class_year').value;
       const password = document.getElementById('password').value;
 
-      // แสดงข้อมูลหรือส่งไป backend
       console.log("สมัครสมาชิกใหม่:");
-      console.log("ชื่อผู้ใช้:", fullname);
+      console.log("ชื่อผู้ใช้:", name);
       console.log("อีเมล:", email);
+      console.log("ปีการศึกษา:", classYear);
       console.log("รหัสผ่าน:", password);
 
       alert("สมัครสมาชิกสำเร็จ!");
@@ -137,3 +140,4 @@
 
 </body>
 </html>
+
