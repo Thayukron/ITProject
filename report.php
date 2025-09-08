@@ -206,7 +206,7 @@ $result = $conn->query($sql);
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="index.php">หน้าแรก</a></li>
         <li class="nav-item"><a class="nav-link" href="#">เกี่ยวกับโครงงาน</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">สมาชิก</a></li>
+        <li class="nav-item"><a class="nav-link" href="register.php">สมาชิก</a></li>
         <li class="nav-item"><a class="nav-link active" href="report.php">ผลงาน</a></li>
         <li class="nav-item"><a class="nav-link" href="upload_project.php">อัปโหลดไฟล์</a></li>
         <li class="nav-item"><a class="nav-link" href="#">ติดต่อ</a></li>
@@ -214,9 +214,6 @@ $result = $conn->query($sql);
     </div>
   </div>
 </nav>
-<!-- ===========================
-        End Navbar Section
-=========================== -->
 
 <div class="container">
   <h1>รายงานโครงงาน IT</h1>
