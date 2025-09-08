@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +11,7 @@
       box-sizing: border-box;
       font-family: 'Prompt', sans-serif;
     }
+
     body {
       background: linear-gradient(to right, #74ebd5, #ACB6E5);
       margin: 0;
@@ -19,24 +21,28 @@
       align-items: center;
       height: 100vh;
     }
+
     .container {
       background: #ffffffdd;
       padding: 30px 40px;
       border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       max-width: 420px;
       width: 100%;
     }
+
     h2 {
       text-align: center;
       color: #333;
       margin-bottom: 25px;
     }
+
     .tab-buttons {
       display: flex;
       justify-content: center;
       margin-bottom: 25px;
     }
+
     .tab-buttons button {
       flex: 1;
       padding: 10px 0;
@@ -47,22 +53,27 @@
       border-radius: 8px 8px 0 0;
       transition: background-color 0.3s;
     }
+
     .tab-buttons button.active {
       background: #3498db;
       color: white;
     }
+
     form {
       display: none;
     }
+
     form.active {
       display: block;
     }
+
     label {
       display: block;
       margin-bottom: 6px;
       color: #444;
       font-weight: bold;
     }
+
     input {
       width: 100%;
       padding: 10px 12px;
@@ -71,10 +82,12 @@
       border-radius: 8px;
       transition: border-color 0.3s;
     }
+
     input:focus {
       border-color: #3498db;
       outline: none;
     }
+
     button.submit-btn {
       width: 100%;
       background-color: #3498db;
@@ -86,20 +99,24 @@
       font-size: 16px;
       transition: background-color 0.3s;
     }
+
     button.submit-btn:hover {
       background-color: #2980b9;
     }
+
     .footer-text {
       text-align: center;
       margin-top: 15px;
       font-size: 14px;
     }
+
     .footer-text a {
       color: #3498db;
       text-decoration: none;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>สมัครสมาชิก</h2>
@@ -165,6 +182,5 @@
     });
   </script>
 </body>
+
 </html>
-
-
