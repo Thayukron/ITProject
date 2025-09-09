@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>สมัครสมาชิก</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffffdd;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 420px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .tab-buttons button {
+      flex: 1;
+      padding: 10px 0;
+      background: #eee;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px 8px 0 0;
+      transition: background-color 0.3s;
+    }
+
+    .tab-buttons button.active {
+      background: #3498db;
+      color: white;
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #444;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    button.submit-btn {
+      width: 100%;
+      background-color: #3498db;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button.submit-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .footer-text a {
+      color: #3498db;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>สมัครสมาชิก</h2>
+    <div class="tab-buttons">
+      <button id="studentBtn" class="active" type="button">นักศึกษา</button>
+      <button id="teacherBtn" type="button">อาจารย์</button>
+    </div>
+
+    <!-- ฟอร์มนักศึกษา -->
+    <form id="studentForm" action="register_student.php" method="POST" class="active">
+      <label for="student_name">ชื่อ-นามสกุล:</label>
+      <input type="text" id="student_name" name="name" required />
+
+      <label for="student_email">อีเมล:</label>
+      <input type="email" id="student_email" name="email" required />
+
+      <label for="student_class_year">ปีการศึกษา:</label>
+      <input type="text" id="student_class_year" name="class_year" required />
+
+      <label for="student_password">รหัสผ่าน:</label>
+      <input type="password" id="student_password" name="password" required />
+
+      <button type="submit" class="submit-btn">ลงทะเบียนนักศึกษา</button>
+    </form>
+
+    <!-- ฟอร์มอาจารย์ -->
+    <form id="teacherForm" action="register_teacher.php" method="POST">
+      <label for="teacher_name">ชื่อ-นามสกุล:</label>
+      <input type="text" id="teacher_name" name="name" required />
+
+      <label for="teacher_email">อีเมล:</label>
+      <input type="email" id="teacher_email" name="email" required />
+
+      <label for="teacher_password">รหัสผ่าน:</label>
+      <input type="password" id="teacher_password" name="password" required />
+
+      <button type="submit" class="submit-btn">ลงทะเบียนอาจารย์</button>
+    </form>
+
+    <div class="footer-text">
+      มีบัญชีแล้ว? <a href="login.php">เข้าสู่ระบบ</a>
+    </div>
+  </div>
+
+  <script>
+    const studentBtn = document.getElementById('studentBtn');
+    const teacherBtn = document.getElementById('teacherBtn');
+    const studentForm = document.getElementById('studentForm');
+    const teacherForm = document.getElementById('teacherForm');
+
+    studentBtn.addEventListener('click', () => {
+      studentBtn.classList.add('active');
+      teacherBtn.classList.remove('active');
+      studentForm.classList.add('active');
+      teacherForm.classList.remove('active');
+    });
+
+    teacherBtn.addEventListener('click', () => {
+      teacherBtn.classList.add('active');
+      studentBtn.classList.remove('active');
+      teacherForm.classList.add('active');
+      studentForm.classList.remove('active');
+    });
+  </script>
+</body>
+
+</html>
